@@ -1,12 +1,10 @@
 FROM python:3.10-slim
 
-# Define o diretório de trabalho dentro do container
 WORKDIR /app
 
-# Copia o arquivo de dependências
 COPY requirements.txt .
 
-# Instala dependências do sistema necessárias para OpenCV e Ultralytics
+# Instala dependências do sistema necessárias para OpenCV
 RUN apt-get update && apt-get install -y \
     libgl1 \
     libglib2.0-0 \
@@ -18,5 +16,5 @@ COPY fl_client.py .
 COPY detector.py .
 COPY frame_receiver.py .
 
-# Comando padrão ao rodar o container
+# Comando pra rodar o container
 CMD ["python", "frame_receiver.py"]
